@@ -1,0 +1,60 @@
+#content{
+    border:5px solid rgba(255, 255, 255, 0.72);
+    box-shadow: 5px 5px 15px #cbcbcb, -5px -5px 15px #f7f7f7;
+}
+/**
+*视窗区
+ */
+#windowArea{
+    border:5px solid white;
+    box-shadow: inset 5px 5px 15px #cacaca, inset -5px -5px 15px #6b6b6b;
+    background: linear-gradient(135deg, #ffffff, #f1f3f1);
+}
+/**
+*操作区
+ */
+#operatorArea{
+    border:5px solid white;
+    box-shadow: inset 5px 5px 10px #d0d0d0, inset -5px -5px 15px #989898;
+    background: linear-gradient(135deg, #ffffff, #f1f3f1);
+}
+/**
+*视窗面板
+ */
+#answerArea{
+    border: 1px solid #f4f4f4;
+    background: white;
+    color: coral;
+}
+/**
+*按键
+ */
+.button{
+    color: coral;   background: white;
+    box-shadow: 3px 3px 5px#989898,-3px -3px 5px #d0d0d0;
+}
+/*按钮悬停样式*/
+.button:hover{
+    background: coral;  color: white;
+    box-shadow: inset 3px 3px 5px #9a4d2f,inset -3px -3px 5px #ffcc99;
+}
+#compute{
+    background: #146dff;
+}
+/*计算键鼠标悬停颜色从左到右填充样式*/
+#compute:after,#compute:before{
+    content:'';
+    position: absolute;     left:0;     top:0;
+    width: 0;   height: 100%;
+    background: #146dff;
+    z-index: -2;
+    border-radius:12px ;
+}
+#compute:hover{z-index: 1;      background: transparent;    color: #146dff;}
+#compute:before{
+    transition: all 0.5s;
+    background: aquamarine;
+    box-shadow: inset 3px 3px 5px #59b294,inset -3px -3px 5px #d0eaff;
+    z-index: -1;
+}
+#compute:hover:after,#compute:hover:before{width: 100%;}

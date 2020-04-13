@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>计算器</title>
+    <link rel="stylesheet" href="css/whiteCal.css" id="mode">
+    <link rel="stylesheet" href="css/calculator.css" ><!--宽度大于1019px生效-->
+    <link rel="stylesheet"  href="css/calculator-mini.css"><!--宽度小于1019px生效-->
+</head>
+<body>
+<div id="changeButtonDiv">
+    <button type="button" id="change" onclick="changeStyle()"></button>
+</div>
+
+<div id="content">
+    <div id="windowArea">
+        <div id="answerArea"></div>
+    </div>
+    <div id="operatorArea">
+        <div id="funcArea">
+            <div id="clear" class="button">C</div>
+            <div id="brackets" class="button">()</div>
+            <div id="backspace" class="button">←</div>
+        </div>
+        <div id="numbersArea">
+            <button type="button" class="button num">1</button><button type="button" class="button num">2</button><button type="button" class="button num">3</button>
+            <button type="button" class="button num">4</button><button type="button" class="button num">5</button><button type="button" class="button num">6</button>
+            <button type="button" class="button num">7</button><button type="button" class="button num">8</button><button type="button" class="button num">9</button>
+            <button type="button" class="button num">.</button><button type="button" class="button num" style="width: 160px;">0</button>
+
+        </div>
+        <div id="computeArea">
+            <div class="button com" style="clear:left">+</div>
+            <div class="button com" style="clear:left">-</div>
+            <div class="button com" style="clear:left">*</div>
+            <div class="button com" style="clear:left">/</div>
+        </div>
+        <button class="button" id="compute">=</button>
+    </div>
+</div>
+
+<script src="js/calculator.js"></script>
+
+</body>
+</html>
