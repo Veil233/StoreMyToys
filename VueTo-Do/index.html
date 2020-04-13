@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue To-Do</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="root">
+    <button id="deleteAll" v-on:click="deleteAll"><img src="icons/deleteAll.png">删除全部 </button>
+
+    <div id="tab" v-bind:class="{ listTab : currentTab=='list' , finishTab : currentTab=='finish' }">
+        <button v-on:click="changeTab"
+                     v-bind:style="{fontSize:listFontSize+'px'}"
+        >计划</button>
+        <button v-on:click="changeTab"
+                     v-bind:style="{fontSize:finishFontSize+'px'}"
+        >已完成</button>
+    </div>
+
+    <div id="listContainer" v-if="currentTab=='list'">
+        <!--这里绑定子组件的‘edit-list’事件-->
+        <todo-item v-for="list of lists"
+                          v-bind:key="list.id"
+                          v-bind:list="list"
+                          v-on:edit-list="editList"
+                          v-on:delete-list="deleteList"
+                          v-on:finish-todo="finishTodo"
+        ></todo-item>
+     </div>
+
+    <div id="finishedContainer" v-if="currentTab=='finish'">
+        <finished-todo v-for="finished of finishedList"
+                               v-bind:key="finished.id"
+                               v-bind:finished="finished"
+                               v-on:delete-finished="deleteFinished"
+        ></finished-todo>
+    </div>
+
+    <!--这里绑定子组件的‘new-list’事件-->
+    <create-todo v-on:new-list="newList"
+                 v-on:submit-edit="submitEdit"
+                 v-bind:todo="todo"
+                 v-bind:edited="edited"
+    ></create-todo>
+</div>
+
+
+
+<script src="main.js"></script>
+</body>
+</html>

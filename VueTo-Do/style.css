@@ -1,0 +1,213 @@
+*{margin: 0;padding: 0;outline: none;}
+#root {
+    overflow: hidden;   white-space: nowrap;
+    width: 100%;  height: 754px;
+}
+#tab{
+    box-sizing: border-box;
+    width: 60%;   height: 50px;
+}
+#tab button{
+    margin-left: 30px;
+    font-size: 16px;    line-height: 50px;
+    border: none;   background: none;
+    border-bottom: 1px solid #868686;
+}
+.listTab{background: white;}
+.listTab button{color: #00acff
+}
+.finishTab{background: #3c3c3c;}
+.finishTab button{color: #868686;}
+
+
+
+
+/*删除全部*/
+#deleteAll {
+    display:block;  box-sizing: border-box;
+    width: 60%;   height: 40px;   line-height: 30px;
+    background: #f66d6d;
+    color: white;
+   border: none;
+}
+#deleteAll img{
+    position: relative;     top:5px;    padding-right: 5px;
+    width: 20px;    height: 20px;
+}
+#deleteAll:hover{
+    cursor: pointer;    background: #f64242;
+}
+
+
+
+/**
+*create-todo组件 ，编辑计划
+ */
+#createTodo{
+    position: absolute; right: 0;   top:0;
+    overflow: hidden;    box-sizing: border-box;
+    width: 40%;     height: 100%;
+    background: #fafafa;
+    box-shadow: -3px 0 5px #707070;
+}
+#createTodo h3{
+    margin-top: 20px;
+    text-align: center;
+    color: #4db3ff;
+}
+/*todo输入主体 ： 标题 + 内容*/
+#inputTittle{
+   display: block;   box-sizing: border-box;
+    width: 55%;      height: 30px;
+    margin-top:30px;    margin-left: 10%;    padding-left: 15px;
+    border:1px solid #a7a3a3;   border-radius:5px;
+}
+#inputContent{
+    box-sizing: border-box;
+    width: 80%;   height: 300px;
+    margin-top:20px;    margin-left: 10%;    padding-top: 10px;   padding-left: 10px;
+    border-radius: 5px;
+}
+/*设置截止日期*/
+#deadlineDate{
+    width: 80%;     height: 35px;   margin-top: 10px;   margin-left: 10%;
+}
+#chooseDate{
+    border-radius: 100%;
+}
+#deadlineDate img{
+    position: relative;     top: 5px;   margin-left: 10px;  margin-right: 10px;
+    width: 25px;    height: 25px;
+}
+#deadlineTime{
+    width: 80%;     height: 35px;   margin-top: 10px;   margin-left: 10%;
+}
+#deadlineTime img{
+    position: relative;     top: 5px;   margin-left: 12px;  margin-right: 12px;
+    width: 20px;    height: 20px;
+}
+/*按钮*/
+#createTodo button{
+     width: 30%;     height: 35px; margin-top: 20px;    line-height: 35px;
+    border: 1px solid cornflowerblue;   border-radius: 20px;
+    background: white;
+}
+#createTodo button:hover{
+    cursor: pointer;    color: cornflowerblue;
+}
+#createTodo button img{
+    position: relative;     top:5px;    right: 5px;
+    width: 20px;    height: 20px;
+}
+#createTodo p{margin-left: 5%;}
+#fastDate{margin-left: 10%;}
+#fastDate button {
+    width: 60px;    margin-left: 15px;
+    background: #5bb6f3;    color: white;
+    border: none;
+}
+#fastTime{margin-left: 10%}
+#fastTime button{
+    width: 100px;   margin-left: 15px;
+    background: coral;    color: white;
+    border: none;
+}
+#addButton{
+     position:relative; left: calc( 10% + 15px );/*与上面的快捷设置按钮左对齐*/
+ }
+#editButton{
+    position:relative; left: calc( 10% + 15px );
+}
+
+
+
+/**
+* todo-item 组件 , 未完成计划项
+ */
+#listContainer{
+    position: absolute;     left: 0;    top: 90px;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 60%;   height: 664px;
+    background: white;
+}
+#listContainer:hover{
+    overflow-y: scroll;
+}
+#listContainer h2{
+    margin-left: 5%;    margin-top: 20px;
+}
+/*计划项*/
+.todoList{
+    overflow: hidden;
+    margin:20px 35px;  padding-left: 2%;
+    width: 90%;
+    background:white ;
+    box-shadow: 1px 1px 15px #707070;
+}
+.todoList h3{/*计划标题*/
+    margin-top: 10px;
+}
+.todoList p{/*计划正文*/
+    margin:10px auto;
+}
+.todoList button:hover{
+    cursor: pointer;    color: cornflowerblue;
+}
+.todoList button img{
+    width: 10px;    height: 10px;
+}
+.option{float: right;}
+.option button{
+    margin-right: 15px;     margin-bottom: 20px;    padding: 3px 10px;
+    width: 70px;
+    background: none;
+    border: 1.5px solid cornflowerblue;   border-radius: 15px;
+}
+.delete{
+    float: right;
+   width: 15px;    height: 15px;
+    margin-top: 10px;   margin-right: 20px;
+    border: none;   background: none;
+}
+.delete img{/*重写给finished共用*/
+    width: 10px;    height: 10px;
+}
+.delete:hover{
+    animation: rotate 2s;
+}
+@keyframes rotate {
+    to{transform: rotate(360deg)}
+}
+
+/**
+*finished-todo组件 ， 已完成计划项
+ */
+#finishedContainer{
+    position: absolute;     left: 0;    top: 90px;
+   overflow: hidden;
+    box-sizing: border-box;
+    width: 60%;     height: 664px;
+    background: #3c3c3c;
+    border-top: 5px solid #3c3c3c;      border-bottom: 5px solid #3c3c3c;
+}
+#finishedContainer:hover{
+    overflow-y: scroll;
+}
+/*计划项*/
+.finishedList{
+    overflow: hidden;
+    margin:20px 35px;  padding-left: 2%;
+    width: 90%;
+    background: #212121;    color: #808080;
+}
+.finishedList h3{/*计划标题*/
+    margin-top: 10px;
+}
+.finishedList p{/*计划正文*/
+    margin:10px auto;
+}
+.finishedList small{
+    display: block;
+    margin-bottom: 20px;
+}
