@@ -59,17 +59,27 @@ var getTimeFromDate=function (date , option ) {
     if(option){
         if ( hour>12 ){
             hour=hour-12;
-            time=`0${hour.toString()}${rest}`;
+            hour=formatHour(hour);
+            time=hour+rest;
             ampm.innerText="PM";
         }
         else {
-            time=`0${hour.toString()}${rest}`;
+            hour=formatHour(hour);
+            time=hour+rest;
             ampm.innerText="AM";
         }
     }
-    else time=`${hour}${rest}`;
+    else {
+        hour=formatHour(hour);
+        time=hour+rest;
+    }
     return time;
 };
+
+function formatHour(hour) {
+    hour=hour.toString();
+    return hour.length==1? "0"+hour : hour;
+}
 
 //存放时钟每一位的实例化对象的数组
 var flippers=[]
@@ -82,7 +92,7 @@ var isTwelve=false
  * @param format 时间格式
  */
 function initClock(format) {
-    isTwelve=format ==12;//
+    isTwelve=format ==12;
     var flips=document.querySelectorAll(".flipNumber");
     var now=new Date();
 //当前时间（由于翻页，实际上是上一秒的时间）
