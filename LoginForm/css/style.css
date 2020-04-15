@@ -1,0 +1,165 @@
+*{margin: 0;padding: 0}
+body{overflow: hidden;      font-family: '楷体', serif}
+/*整体背景*/
+#container{
+    display: flex;  justify-content: center;    align-items: center;
+    width: 100%;       height: 100vh;
+    background: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%) no-repeat;
+}
+
+/**
+*登录
+*/
+#loginCard{
+    display: flex;      justify-content: left;    align-items: center;
+    width: 900px;   height: 500px;
+    border-radius: 15px;     background: white;
+    transform-origin: center center;    transform:rotateY(0);     backface-visibility: hidden;/*背面不可见*/
+    transition: all 1.5s;
+    box-shadow: 0 0 25px white;
+}
+/*侧边图片*/
+#loginImg{
+    display: flex;     justify-content: center;     align-items: center;    overflow: hidden;
+    width: 400px;   height: 500px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+#loginImg img{display:block;    width: 300px;}
+/*表单*/
+#loginCard form{margin-left: 50px;}
+/*input + label 盒*/
+.loginBox{
+    position: relative; box-sizing: border-box;
+    width: 400px;   height: 100px;
+}
+.loginBox label{
+    display: block;
+    position: absolute;     top: 0;     left: 0;
+    font-size: 25px;    color: #4ba2fd;
+    transition: all 1s;
+}
+.loginBox input{
+    outline: none;
+    width: 100%;    height: 50px;
+    border: none;   border-bottom: 1px solid #21D4FD;
+    background: none;
+    transition: all 1s;
+}
+.loginBox input:focus,
+.loginBox input:valid{
+    border-bottom: 2px solid #7900ae;
+    background: none;
+}
+.loginBox input:focus~label,
+.loginBox input:valid~label{
+    top: -20px;
+    font-size: 18px;    color:  #7900ae;
+}
+
+#remember{
+    display: block;
+    margin-bottom: 20px;    margin-left: 10px;
+}
+
+/*登录、注册按钮*/
+.button{
+    display: flex;   justify-content: center;   align-items: center;    outline: none;
+    width: 100px;   height: 50px;   line-height: 50px;
+    background: #4e9efd;
+    border: none; border-radius: 35px;
+    transition: all 1s;
+}
+.button img{
+    width: 20px ;   height: 20px;
+}
+.button:hover{
+    background: #796bfd;
+    box-shadow: 0 0 5px #796bfd,
+                        0 0 5px #796bfd,
+                        0 0 5px #796bfd,
+                        0 0 5px #796bfd;
+}
+
+#goToSign{
+    display: block;
+    margin-top: 20px;
+    color: #21D4FD;     text-decoration: none;
+    transition: all 1.5s;
+}
+#goToSign img{
+    width: 10px;
+}
+#goToSign:hover{
+    color: #B721FF;
+}
+
+
+
+/**
+*注册
+ */
+#signUpCard{
+    position: absolute;     left: calc(50% - 450px);    top: calc(50% - 250px);
+    display: flex;      justify-content: left;    align-items: center;
+    width: 900px;   height: 500px;
+    border-radius: 15px;
+    background: white;
+    transform-origin: center center;
+    transform:rotateY(0.5turn); backface-visibility: hidden;
+    transition: all 1.5s;
+    box-shadow: 0 0 25px white;
+}
+/*返回登录*/
+#back{
+    float: left;
+    margin-left: 5px;
+    width: 50px;    height: 50px;
+    background: none;   border: none;
+    outline: none;
+}
+#back img{
+    width: 20px;
+}
+#back:hover{
+    cursor:pointer;
+}
+/*表单*/
+#signUpCard form{
+    float: left;
+    margin-right: 10px;
+}
+/*input + label 盒*/
+.signBox{
+    position: relative; box-sizing: border-box;
+    margin-top: 10px;   margin-left: 20px;
+    width: 350px;   height: 70px;
+}
+.signBox label{
+    display: block;
+    position: absolute;     top: 0;     left: 0;
+    font-size: 20px;    color: #4ba2fd;
+    transition: all 1s;
+}
+.signBox input{
+    outline: none;
+    width: 100%;    height: 30px;
+    border: none;   border-bottom: 1px solid #21D4FD;
+    background: none;
+    transition: all 1s;
+}
+.signBox input:focus{
+    border-bottom: 2px solid #B721FF;
+}
+.signBox input:focus~label,
+.signBox input:valid~label{
+    top: -20px;
+    font-size: 16px;    color: #B721FF;
+}
+#signUpImg{
+    margin-left: 30px;
+    width: 400px;   height: 500px;
+}
+#signUpImg img{
+    width: 400px;   height: 500px;
+}

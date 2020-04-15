@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录&注册</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div id="container">
+    <!--登录-->
+    <div id="loginCard">
+        <div id="loginImg">
+            <img src="icon/true_love.svg">
+        </div>
+
+        <form action="" method="post" onsubmit="login()">
+            <div class="loginBox">
+                <input type="text" id="userName" required>
+                <label for="userName">用户名</label>
+            </div>
+            <div class="loginBox">
+                <input type="text" id="password" required>
+                <label for="password">密码</label>
+            </div>
+            <div id="remember">
+                <input type="radio" id="isRemember">
+                <label for="remember">记住我</label>
+            </div>
+            <button type="submit" class="button"><img src="icon/submit.png" ></button>
+            <a href="#" id="goToSign" onclick="goToSign()">没有账号？立即注册！<img src="icon/goToSign.png" alt=""></a>
+        </form>
+    </div>
+    <!--登录结束-->
+
+    <!--注册-->
+    <div id="signUpCard">
+        <button type="button" id="back" onclick="backToLogin()"><img src="icon/back.png" alt=""></button>
+        <form action="" method="post">
+            <div class="signBox">
+                <input type="text" id="singUserName" required>
+                <label for="singUserName">用户名</label>
+            </div>
+            <div class="signBox">
+                <input type="text" id="signPassword" required>
+                <label for="signPassword">密码</label>
+            </div>
+            <div class="signBox">
+                <input type="text" id="confirmPassword" required>
+                <label for="confirmPassword">确认密码</label>
+            </div>
+            <div class="signBox">
+                <input type="text" id="phone" required>
+                <label for="phone">手机号</label>
+            </div>
+            <div class="signBox">
+                <input type="text" id="email" required>
+                <label for="email">电子邮箱</label>
+            </div>
+            <button type="submit" class="button" onclick="signUp()" style="margin-left: 15px"><img src="icon/submit.png"></button>
+        </form>
+        <div id="signUpImg">
+            <img src="icon/welcome_cats.svg">
+        </div>
+    </div>
+    <!--注册结束-->
+</div>
+
+
+<script src="js/main.js"></script>
+</body>
+</html>
