@@ -191,6 +191,8 @@ function formatDateString( dateString , addition ) {
 /*格式化时间*/
 function formatHour( hour , addition ) {
     var newHour=parseInt(hour)+addition
+    if (newHour>=24) newHour-=24
+    newHour=newHour.toString()
     newHour=newHour.length==1? "0"+newHour : newHour
     return newHour
 }
@@ -297,7 +299,7 @@ var vm=new Vue({
         deleteFinished(index) {
             var key="f"+(index+1)
             this.finishedList.splice( index , 1 )
-            store.delete("this" , key)
+            store.delete("this" , key )
         }
     }
 })
@@ -314,7 +316,6 @@ var store={
         catch (e) {
             console.log("error:"+e)
         }
-
     },
 
     fetch(){
