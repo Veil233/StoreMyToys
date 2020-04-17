@@ -163,10 +163,8 @@ function cal() {
             var length=preExpression.length;
             var value=0;
             for ( let i=0 ; i<length ; i++   ){//从左向右遍历
-                if ( !isNaN(preExpression[i]) ){//读取到数字根据其中是否有小数点判断转换类型后压入result
-                    if ( preExpression[i].indexOf(".")==-1 )      value=parseInt(preExpression[i]);
-                    else    value=parseFloat(preExpression[i]);
-                    result.push(value);
+                if ( !isNaN(preExpression[i]) ){
+                    result.push(preExpression[i]);
                 }
                 else {//读取到运算符
                     top=result.pop();//栈顶元素
@@ -252,10 +250,13 @@ function handleExpression() {
  * @param top   栈顶元素
  * @param sub   次顶元素
  * @param operator  运算符
- * @returns {number}    结果
+ * @returns {string}    结果
  */
 function compute(top,sub,operator) {
     var result=0;
+    top=Number(top);
+    sub=Number(sub);
+    console.log(top , sub)
     switch (operator) {
         case "+" :  result=top+sub ;    break;
         case "-"  :  result=top-sub ;     break;
