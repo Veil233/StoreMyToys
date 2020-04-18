@@ -14,7 +14,7 @@
             <img src="icon/true_love.svg">
         </div>
 
-        <form action="" method="post" onsubmit="login()">
+        <form action="" method="post" onsubmit="return login()">
             <div class="loginBox">
                 <input type="text" id="userName" required>
                 <label for="userName">用户名</label>
@@ -24,8 +24,9 @@
                 <label for="password">密码</label>
             </div>
             <div id="remember">
-                <input type="radio" id="isRemember">
-                <label for="remember">记住我</label>
+                <input type="checkbox" id="isRemember">
+                <div id="checked"></div>
+                <label for="isRemember">记住我</label>
             </div>
             <button type="submit" class="button"><img src="icon/submit.png" ></button>
             <a href="#" id="goToSign" onclick="goToSign()">没有账号？立即注册！<img src="icon/goToSign.png" alt=""></a>
@@ -36,28 +37,44 @@
     <!--注册-->
     <div id="signUpCard">
         <button type="button" id="back" onclick="backToLogin()"><img src="icon/back.png" alt=""></button>
-        <form action="" method="post">
+        <form action="" method="post" onsubmit="return signUp()"><!--return signUp 当return false是防止跳转-->
             <div class="signBox">
-                <input type="text" id="singUserName" required>
+                <input type="text" id="singUserName" onkeyup="checkUsername(this.value)"  title="允许 0-9 a-z A-Z" required>
                 <label for="singUserName">用户名</label>
+                <span class="hint" id="nameHint"></span>
             </div>
             <div class="signBox">
-                <input type="text" id="signPassword" required>
+                <input type="text" id="signPassword" class="input" onkeyup="passStrength(this.value)" title="合法字符：0-9 a-z A-Z ." required>
+                <span class="hint" id="passHint"></span>
+                <!--密码强度提示-->
+                <span class="strength" id="perfect"></span>
+                <span class="strength" id="strong"></span>
+                <span class="strength" id="normal"></span>
+                <span class="strength" id="weak"></span>
+                <!--密码强度提示结束-->
                 <label for="signPassword">密码</label>
             </div>
             <div class="signBox">
-                <input type="text" id="confirmPassword" required>
+                <input type="text" id="confirmPassword"  class="input" onkeyup="confirmPass(this.value)"  required>
                 <label for="confirmPassword">确认密码</label>
+                <span class="hint" id="confirmHint">两次密码不一致</span>
             </div>
             <div class="signBox">
-                <input type="text" id="phone" required>
+                <input type="text" id="phone" class="input" onkeyup="checkPhone(this.value)" required>
                 <label for="phone">手机号</label>
+                <span class="hint" id="phoneHint">无效的手机号</span>
             </div>
             <div class="signBox">
-                <input type="text" id="email" required>
+                <input type="text" id="email" class="input" onkeyup="checkEmail(this.value)" required>
                 <label for="email">电子邮箱</label>
+                <div id="emailHint">
+                    <p class="completeEmail" onclick="completeEmail(this.innerHTML)"></p>
+                    <p class="completeEmail" onclick="completeEmail(this.innerHTML)"></p>
+                    <p class="completeEmail" onclick="completeEmail(this.innerHTML)"></p>
+                    <p class="completeEmail" onclick="completeEmail(this.innerHTML)"></p>
+                </div>
             </div>
-            <button type="submit" class="button" onclick="signUp()" style="margin-left: 15px"><img src="icon/submit.png"></button>
+            <button type="submit" class="button" style="margin-left: 15px"><img src="icon/submit.png"></button>
         </form>
         <div id="signUpImg">
             <img src="icon/welcome_cats.svg">
@@ -68,5 +85,7 @@
 
 
 <script src="js/main.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/submit.js"></script>
 </body>
 </html>
