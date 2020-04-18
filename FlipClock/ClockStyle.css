@@ -89,7 +89,7 @@ body{background: #191919;overflow: hidden;}
  */
 .flipNumber{
     position:relative;   box-sizing: border-box;
-    width: 14%;   height: 300px;    margin-left: 1.4%;
+    width: 14%;   height: 300px; margin-left: 1.4%;
     text-align: center;     font-size: 300px;      line-height: 300px;
     background: #ffffff;
     box-shadow: 1px 1px 5px black;
@@ -122,7 +122,7 @@ body{background: #191919;overflow: hidden;}
 }
 .time::after{
     top:50%;    bottom: 0;
-    line-height: 0;
+   line-height: 0;
 }
 /*翻转前*/
 .flipNumber .front::after , .flipNumber .back::before{z-index: 1;}
