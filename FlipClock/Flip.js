@@ -122,7 +122,7 @@ function flipEverySecond() {
 
 /**
  * 时钟设置
- * */
+ */
 //切换十二小时制
 function toggleFormat () {
     var controlFormat=document.getElementById("controlFormat");
