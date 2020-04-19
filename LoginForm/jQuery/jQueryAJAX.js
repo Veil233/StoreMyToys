@@ -10,10 +10,10 @@ window.onload=function () {
              $.ajax( "http://localhost:8080/autoLogin" , {
                     type : "post" ,
                     data : `type=${type}&username=${username}` ,
-                 success(response){
-                     console.log(response)
-                     if ( response=="success" )   alert("登录成功")
-                     else if( response=="failed" ) alert("登录失败")
+                 success(result){
+                     console.log(result)
+                     if ( result=="success" )   alert("登录成功")
+                     else if( result=="failed" ) alert("登录失败")
                  },
                  error : function (e) {
                      alert("发生了预期之外的错误")
@@ -48,9 +48,9 @@ function login(){
     $.ajax("http://localhost:8080/login",{
         type : "post",
         data : `type=${type}&username=${username}&password=${password}`,
-        success(response){
-            console.log(response)
-            if ( response=="success" )   {
+        success(result){
+            console.log(result)
+            if ( result=="success" )   {
                 if ($("#isRemember").prop("checked") ){
                     if ( !localStorage.getItem("user") ){
                         localStorage.setItem("user" , username)
@@ -67,7 +67,7 @@ function login(){
                 }
                 alert("登录成功")
             }
-            else if( response=="failed" ) alert("登录失败")
+            else if( result=="failed" ) alert("登录失败")
         },
         error : function (e) {
             alert("发生了预期之外的错误")
@@ -100,16 +100,17 @@ function signUp() {
         $.ajax( "http://localhost:8080/signUp" , {
             type: "post",
             data: `username=${username}&password=${password}&phone=${phone}&email=${email}`,
-            success(response) {
-                console.log(response)
-                if (response == "success") alert("注册成功")
-                else if (response == "failed") alert("注册失败")
+            success(result) {
+                console.log(result)
+                if (result == "success") alert("注册成功")
+                else if (result == "failed") alert("注册失败")
             },
             error : function (e) {
                 alert("发生了预期之外的错误")
                 console.log(e.status)
                 console.log(e.responseText)
-            }
+            },
+
         })
     }
     else alert("好好看看是不是哪里不对")
