@@ -1,18 +1,20 @@
 package game;
 
+import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Hero extends  MovableObject{
-    public int life;
     private int jumpHeight;
     public int missile;
     public int fireUpCount;
     public int shield;
-    public int flyTime;
     public int level;
+    public int fireLevel;
     public int expRequire;
     public boolean isJumping;
+    public boolean ableToFly;
     public boolean isFlying;
 
     /*构造方法*/
@@ -26,11 +28,12 @@ public class Hero extends  MovableObject{
         this.level=1;
         this.expRequire=10;
         this.jumpHeight=150;
-        this.speed=Start.speed;
         this.fireUpCount=0;
         this.missile=10;
         this.shield=0;
+        this.fireLevel=2;
         this.isJumping=false;
+        this.ableToFly=false;
         this.isFlying=false;
     }
 
@@ -43,7 +46,7 @@ public class Hero extends  MovableObject{
         new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    Hero.this.x+=Hero.this.speed;
+                    Hero.this.x+=Start.speed;//speed*1
                     Hero.this.y=400;
                     Hero.this.image=Start.heroImg;
                     Hero.this.isJumping=false;
@@ -55,10 +58,21 @@ public class Hero extends  MovableObject{
     public Bullet shoot(){
         int x=this.x+this.width;
         int y=this.y;
-        if (this.fireUpCount>0){
-            --this.fireUpCount;
-        }
         return new Bullet(x , y);
+    }
+
+    /*连发*/
+    public Bullet[] continuousShoot(){
+        int xStep=60;
+        --this.fireUpCount;
+        Bullet[] bullets=new Bullet[0];
+        for (int i=0 ; i<this.fireLevel ; i++){
+            int x=this.x+this.width+xStep*i;
+            Bullet bullet=new Bullet(x , this.y);
+            bullets= Arrays.copyOf(bullets , bullets.length+1);
+            bullets[bullets.length-1]=bullet;
+        }
+        return bullets;
     }
 
     /*发射导弹*/
@@ -74,13 +88,28 @@ public class Hero extends  MovableObject{
         ++this.life;
     }
 
-    /*提速*/
-    public void increaseSpeed(int addition){
-        this.speed+=addition;
+    /*飞行提速*/
+    public void increaseSpeedAndFly(){
+        Start.speed=10;
+        this.y=100;
+        this.image=Start.heroFlyImg;
+        this.isFlying=true;
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Start.speed=5;
+                Hero.this.y=400;
+                Hero.this.image=Start.heroImg;
+                Hero.this.ableToFly=false;
+                Hero.this.isFlying=false;
+            }
+        } , 10000);
     }
 
-    /*火力升级 : 子弹发射没有时间间隔限制*/
+    /*火力升级 : 子弹连发*/
     public void fireUpCount(){
+        this.fireLevel++;
         this.fireUpCount+=20;
     }
 
@@ -91,12 +120,13 @@ public class Hero extends  MovableObject{
 
     /*铜墙铁壁 ：获得护盾*/
     public void getShield(){
-        this.shield+=5;
+        this.shield=3;
     }
 
     /*获得经验值并升级*/
     public void getExp(int exp){
-        if (exp>expRequire){
+        this.exp+=exp;
+        if (this.exp>=expRequire){
             this.expRequire+=10;
             this.level++;
         }

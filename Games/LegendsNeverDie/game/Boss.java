@@ -1,7 +1,6 @@
 package game;
 
 public class Boss extends MovableObject implements NPC{
-    public int life;
 
     public Boss(int x){
         this.x=x;
@@ -9,22 +8,21 @@ public class Boss extends MovableObject implements NPC{
         this.image=Start.bossImg;
         this.width=this.image.getWidth();
         this.height=this.image.getHeight();
-        this.life=3;
-        this.speed=Start.speed;
+        this.life=2;
         this.exp=10;
     }
 
     /*生成物随地图移动（相对静止）*/
     @Override
     public void move(){
-        this.x-=this.speed;
+        this.x-=Start.speed;
     }
 
     /*发射导弹*/
-    public Missile fireMissile(){
+    public BossMissile fireMissile(){
         int x=this.x;
-        int y=400;
-        return new Missile(x , y);
+        int y=this.y;
+        return new BossMissile(x , y);
     }
 
     /*获取经验值*/

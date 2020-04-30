@@ -1,21 +1,20 @@
 package game;
 
-public class Missile extends Bullet {
-
-    /*构造方法*/
-    public Missile(int x , int y){
+public class BossMissile extends Missile {
+    public BossMissile(int x , int y){
         super(x , y);
         this.x=x;
         this.y=y;
-        this.image=Start.missileOfHeroImg;
+        this.image=Start.missileOfBossImg;
         this.width=this.image.getWidth();
         this.height=this.image.getHeight();
-        this.speed=5;
+        this.speed=7;
         this.damage=2;
     }
 
-    /*导弹前进*/
+    /*敌方导弹反向移动*/
+    @Override
     public void move() {
-        this.x += this.speed;
+        this.x-=this.speed;
     }
 }

@@ -1,7 +1,8 @@
 package game;
 
 public class Bullet extends MovableObject {
-    private int speed;
+    protected int speed;
+    public int damage;
 
     public Bullet(int x , int y){
         this.image=Start.bulletImg;
@@ -10,6 +11,7 @@ public class Bullet extends MovableObject {
         this.x=x;
         this.y=y;
         this.speed=5;
+        this.damage=1;
     }
 
     /*子弹前进*/
