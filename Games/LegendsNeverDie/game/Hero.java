@@ -6,6 +6,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Hero extends  MovableObject{
+    private BufferedImage[] images=new BufferedImage[0];
+    private int index;
     private int jumpHeight;
     public int missile;
     public int fireUpCount;
@@ -19,7 +21,15 @@ public class Hero extends  MovableObject{
 
     /*构造方法*/
     public Hero(){
-        this.image=Start.heroImg;
+        this.images=new BufferedImage[]{
+                Start.heroImg1,
+                Start.heroImg2,
+                Start.heroImg3,
+                Start.heroImg4,
+                Start.heroImg5,
+        };
+        this.index=0;
+        this.image=this.images[0];
         this.width=this.image.getWidth();//86
         this.height=this.image.getHeight();//96
         this.x=50;
@@ -29,9 +39,9 @@ public class Hero extends  MovableObject{
         this.expRequire=10;
         this.jumpHeight=150;
         this.fireUpCount=0;
-        this.missile=10;
+        this.missile=0;
         this.shield=0;
-        this.fireLevel=2;
+        this.fireLevel=1;
         this.isJumping=false;
         this.ableToFly=false;
         this.isFlying=false;
@@ -40,18 +50,26 @@ public class Hero extends  MovableObject{
     /*行为：跳跃*/
     @Override
     public void move(){
+        if (Start.speed!=0 && this.isJumping==false && this.isFlying==false){
+            int num=this.index++/10 % this.images.length;
+            this.image=this.images[num];
+        }
+    }
+
+    /*跳跃*/
+    public void jump(){
         this.isJumping=true;
         this.y-=this.jumpHeight;
         this.image=Start.heroFlyImg;
         new Timer().schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    Hero.this.x+=Start.speed;//speed*1
-                    Hero.this.y=400;
-                    Hero.this.image=Start.heroImg;
-                    Hero.this.isJumping=false;
-                }
-          } , 1000);
+            @Override
+            public void run() {
+                Hero.this.x+=Start.speed;//speed*1
+                Hero.this.y=400;
+                Hero.this.image=Hero.this.images[0];
+                Hero.this.isJumping=false;
+            }
+        } , 1000);
     }
 
     /*射击*/
@@ -64,7 +82,7 @@ public class Hero extends  MovableObject{
     /*连发*/
     public Bullet[] continuousShoot(){
         int xStep=60;
-        --this.fireUpCount;
+        this.fireUpCount-=this.fireLevel;
         Bullet[] bullets=new Bullet[0];
         for (int i=0 ; i<this.fireLevel ; i++){
             int x=this.x+this.width+xStep*i;
@@ -100,7 +118,7 @@ public class Hero extends  MovableObject{
             public void run() {
                 Start.speed=5;
                 Hero.this.y=400;
-                Hero.this.image=Start.heroImg;
+                Hero.this.image=Hero.this.images[0];
                 Hero.this.ableToFly=false;
                 Hero.this.isFlying=false;
             }

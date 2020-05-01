@@ -1,13 +1,14 @@
 package game;
 
-public class Boss extends MovableObject implements NPC{
+public class Boss extends Enemy implements NPC{
 
     public Boss(int x){
-        this.x=x;
-        this.y=400;
+        super(x);
         this.image=Start.bossImg;
         this.width=this.image.getWidth();
         this.height=this.image.getHeight();
+        this.x=x;
+        this.y=400;
         this.life=2;
         this.exp=10;
     }
