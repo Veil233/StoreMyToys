@@ -68,10 +68,11 @@ public class Start extends JPanel {
     //爆炸
     public static BufferedImage bangImg;
     //计分
-    public double startTime=new Date().getTime();
+    public static int index;
     private int meters=0;
     /*计时器*/
     private Timer timer;
+    private TimerTask timerTask;
     private int interval=10;
     /*计数*/
     private int generatorIndex=0;//控制生成物生成频率
@@ -203,7 +204,7 @@ public class Start extends JPanel {
             }
         }
     }
-    /*移动地方导弹*/
+    /*移动敌方导弹*/
     public void moveMissile(){
         for (int i=0 ; i<this.missilesOfBoss.length ; i++){
             this.missilesOfBoss[i].move();
@@ -219,8 +220,11 @@ public class Start extends JPanel {
     /*---逻辑---*/
     /*计算里程*/
     public void getMeters(){
-        double time=new Date().getTime();
-        Start.this.meters=(int)( (time-Start.this.startTime)/1000* speed);
+        if (this.state==1){
+            index++;//每10ms加一次
+            if (index%100==0 && index!=1)//每100次10ms的执行（每秒）+speed
+            this.meters+=speed;//也就是meters=speed*1s
+        }
     }
     /*随机生成x坐标*/
     public int generateXPosition(){
@@ -559,6 +563,7 @@ public class Start extends JPanel {
         if (this.state!=1) {
             this.state=1;
             speed=lastSpeed;
+            this.meters=0;
         }
     }
     /*ESC ：暂停游戏*/
@@ -623,6 +628,7 @@ public class Start extends JPanel {
     public void initBeforeGameStart(){
         if (this.state==0){
             speed=0;
+            this.meters=0;
         }
     }
     /*判断游戏是否结束*/
@@ -630,6 +636,7 @@ public class Start extends JPanel {
         if (this.hero.life<=0){
             this.state=3;
             speed=0;
+            this.meters=0;
             this.hero=new Hero();
             this.generators=new MovableObject[0];
             this.bullets=new Bullet[0];
@@ -702,7 +709,7 @@ public class Start extends JPanel {
 
         //定时器
         this.timer=new Timer();
-        this.timer.schedule(new TimerTask() {
+        timerTask=new TimerTask() {
             public void run() {
                 Start.this.initBeforeGameStart();//游戏开始前初始化
                 Start.this.checkIsGameOver();//检测游戏是否结束
@@ -718,7 +725,8 @@ public class Start extends JPanel {
                 Start.this.heroHitAction();//英雄碰撞检测
                 Start.this.repaint();//重绘
             }
-        }, this.interval , this.interval);
+        };
+        this.timer.schedule(timerTask , this.interval , this.interval);
 
         this.requestFocus();
     }
