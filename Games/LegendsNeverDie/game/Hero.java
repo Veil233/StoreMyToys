@@ -6,7 +6,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Hero extends  MovableObject{
-    private BufferedImage[] images=new BufferedImage[0];
     private int index;
     private int jumpHeight;
     public int missile;

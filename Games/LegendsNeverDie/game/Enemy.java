@@ -3,7 +3,6 @@ package game;
 import java.awt.image.BufferedImage;
 
 public class Enemy extends MovableObject implements NPC{
-    private BufferedImage[] images=new BufferedImage[0];
     private int index;
 
     /*构造方法*/

@@ -7,6 +7,7 @@ import java.awt.event.*;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.*;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -26,6 +27,7 @@ public class Start extends JPanel {
     public static BufferedImage background;
     public int bgXPosition=0;//x坐标
     public static int speed=5;//初始速度
+    public static int lastSpeed=5;
     /*GUI*/
     public static BufferedImage milepostImg;
     public static BufferedImage lifeImg;
@@ -87,6 +89,8 @@ public class Start extends JPanel {
     public static BufferedImage buffFly;
     /*游戏操作提示*/
     public static BufferedImage guide;
+
+
 
 
     /*构造方法*/
@@ -153,6 +157,7 @@ public class Start extends JPanel {
             exp.printStackTrace();
         }
     }
+
 
 
     /*------游戏行为------*/
@@ -422,6 +427,7 @@ public class Start extends JPanel {
     /*敌机爆炸*/
     public void enemyExplosion(int i){
         //敌机爆炸
+        this.generators[i].images=new BufferedImage[]{bangImg};
         this.generators[i].image=bangImg;
         //移除爆炸敌机
         new Timer().schedule(new TimerTask() {
@@ -431,7 +437,7 @@ public class Start extends JPanel {
                 Start.this.generators[i]=Start.this.generators[length-1];
                 Start.this.generators=Arrays.copyOf(Start.this.generators , length-1);
             }
-        } , 30);
+        } , 60);
     }
     /*判断敌方是否死亡*/
     public void isEnemyAlive(int i){
@@ -552,12 +558,13 @@ public class Start extends JPanel {
     public void startGame(){
         if (this.state!=1) {
             this.state=1;
-            speed=5;
+            speed=lastSpeed;
         }
     }
     /*ESC ：暂停游戏*/
     public void pauseGame(){
         if (this.state==1)  {
+            lastSpeed=speed;
             speed=0;
             this.state=2;
         }
@@ -677,6 +684,7 @@ public class Start extends JPanel {
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
                 if (Start.this.state==1){
+                    lastSpeed=speed;
                     Start.this.state=2;
                     speed=0;
                 }
@@ -686,7 +694,7 @@ public class Start extends JPanel {
             public void mouseEntered(MouseEvent e){
                 if (Start.this.state==2){
                     Start.this.state=1;
-                    speed=5;
+                    speed=lastSpeed;
                 }
             }
         };

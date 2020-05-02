@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="LegendsNeverDie:jar">
+    <output-path>E:/陶卓维/程序/Game/LegendsNeverDie/artifacts/LegendsNeverDie_jar</output-path>
+    <root id="archive" name="LegendsNeverDie.jar">
+      <element id="module-output" name="LegendsNeverDie" />
+    </root>
+  </artifact>
+</component>

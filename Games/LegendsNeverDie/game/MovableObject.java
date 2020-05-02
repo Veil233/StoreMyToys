@@ -9,6 +9,7 @@ public abstract class MovableObject {
     protected int width;
     protected int height;
     protected BufferedImage image;
+    protected BufferedImage[] images=new BufferedImage[0];
     protected int exp;
     protected int life;
 
